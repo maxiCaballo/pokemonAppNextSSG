@@ -22,15 +22,20 @@ export const Navbar = () => {
         width={70}
         height={70}
       />
-      <NextLink href="/" passHref>
-        <Link>
-          <Text color="white" h2>
-            P
-          </Text>
-          <Text color="white" h3>
-            okémon
-          </Text>
-        </Link>
+
+      <NextLink href="/">
+        <Text h3>
+          <span
+            style={{
+              textTransform: "capitalize",
+              fontSize: "35px",
+              marginRight: "2px",
+            }}
+          >
+            p
+          </span>
+          okémon
+        </Text>
       </NextLink>
 
       {/* Flex 1 para que tome todo el espacio disponible */}

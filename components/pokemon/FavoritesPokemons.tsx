@@ -10,7 +10,6 @@ interface Props {
 export const FavoritesPokemons: FC<Props> = ({ pokemonsId }) => {
   return (
     <>
-      we did it
       {pokemonsId.length && (
         <Grid.Container gap={2} direction="row" justify="flex-start">
           {pokemonsId.map((id) => (
