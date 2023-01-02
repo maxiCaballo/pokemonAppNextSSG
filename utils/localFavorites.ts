@@ -16,3 +16,6 @@ export const isFavoritePokemon = (id: number): boolean => {
   const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
   return favorites.includes(id);
 };
+export const favoritesPokemons = (): number[] => {
+  return JSON.parse(localStorage.getItem("favorites") || "[]");
+};
