@@ -6,9 +6,10 @@ import {
   PokemonImage,
   InfoCard,
 } from "../../../components/pokemon/pokemonPage";
-import { getAllPokemons, getPokemonByName } from "../../../api/pokemonApi";
+import { getAllPokemons } from "../../../api/pokemonApi";
 import { PokemonListResponse } from "../../../interfaces/iPokemonList";
 import { Pokemon } from "../../../interfaces/iPokemonFull";
+import { getPokemonInfo } from "../../../utils/getPokemonInfo";
 
 //Interface
 interface Props {
@@ -42,11 +43,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { name } = ctx.params as { name: string };
-  const data = await getPokemonByName(name);
+
+  const pokemon = await getPokemonInfo(name);
 
   return {
     props: {
-      pokemon: data,
+      pokemon,
     },
   };
 };

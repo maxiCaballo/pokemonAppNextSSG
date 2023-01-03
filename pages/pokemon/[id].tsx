@@ -1,13 +1,10 @@
 //React-Next-NextUi-Components-Api-Interfaces-Utils
-import { useState, useEffect } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Grid } from "@nextui-org/react";
 import { Layout } from "../../components/layouts";
 import { PokemonImage, InfoCard } from "../../components/pokemon/pokemonPage";
 import { Pokemon } from "../../interfaces";
-import { getPokemonById } from "../../api/pokemonApi";
-import { isFavoritePokemon, toggleFavorite } from "../../utils/localFavorites";
-import confetti from "canvas-confetti";
+import { getPokemonInfo } from "../../utils/getPokemonInfo";
 
 //Interface
 interface Props {
@@ -45,11 +42,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { id } = ctx.params as { id: string }; //ctx = context
 
-  const data = await getPokemonById(id);
+  const pokemon = await getPokemonInfo(id);
 
   return {
     props: {
-      pokemon: data,
+      pokemon,
     },
   };
 };
