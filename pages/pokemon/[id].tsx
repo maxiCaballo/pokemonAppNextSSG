@@ -34,7 +34,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })),
     //if fallback was "blocking" next contemplate pages that are not preloaded
     //False throw 404 error if the page is not conteplate in the sv
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -44,10 +44,20 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   const pokemon = await getPokemonInfo(id);
 
+  if (!pokemon) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       pokemon,
     },
+    revalidate: 86400, //60 * 60 * 24
   };
 };
 
